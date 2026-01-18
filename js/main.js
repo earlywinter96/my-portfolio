@@ -241,7 +241,7 @@ if (demoBtn) {
     output.innerHTML = "<p>Analyzing with AI… ⏳</p>";
 
     try {
-      const res = await fetch("http://localhost:5050/api/analyze", {
+      const res = await fetch("https://gemini-backend-dscf.onrender.com/api/analyze", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: input })
