@@ -556,3 +556,45 @@ body.loaded .loader {
   font-family: monospace;
   font-size: 0.85rem;
 }
+/* =====================================
+   CERTIFICATIONS
+===================================== */
+.certifications {
+  min-height: auto;
+}
+
+.cert-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+}
+
+.cert-card {
+  background: #1a1a1a;
+  padding: 22px;
+  border-radius: 14px;
+  transition: transform 0.3s ease;
+}
+
+.cert-card:hover {
+  transform: translateY(-6px);
+}
+
+.cert-card h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+  color: #00ffd5;
+}
+
+.cert-card p {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.cert-card span {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.8rem;
+  opacity: 0.7;
+}

@@ -268,4 +268,15 @@ gsap.from(".ai-demo-box", {
       start: "top 75%"
     }
   });
+  gsap.from(".cert-card", {
+    autoAlpha: 0,
+    y: 40,
+    duration: 0.6,
+    stagger: 0.15,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".certifications",
+      start: "top 75%"
+    }
+  });
   
