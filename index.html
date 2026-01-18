@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 
+
 <body>
 
  <!-- PAGE LOADER -->
@@ -77,27 +78,46 @@
   <!-- ABOUT -->
   <section class="about" id="about">
     <h2 class="reveal">About Me</h2>
-
-    <p class="about-text">
-      I’m a <strong>Senior Data Analyst & AI Developer</strong> with 4.5+ years of experience
-      turning raw, complex datasets into actionable business insights. I specialize in
-      building <strong>end-to-end analytics solutions</strong>—from data extraction and
-      validation to visualization and strategic decision-making.
-    </p>
-
-    <p class="about-text">
-      I’ve worked extensively across <strong>marketing analytics, operations analytics,
-      and AI-driven applications</strong>, partnering with product and business teams to
-      automate reporting workflows, improve engagement metrics, and enhance data accuracy
-      using <strong>Python, SQL, R, and Tableau</strong>.
-    </p>
-
-    <p class="about-text">
-      Beyond analytics, I actively build <strong>AI-powered tools</strong> using Generative AI
-      APIs, experiment with <strong>interactive web experiences</strong>, and continuously
-      upskill to bridge data science, engineering, and product thinking.
-    </p>
+  
+    <div class="about-grid">
+  
+      <!-- LEFT: CONTENT -->
+      <div class="about-text-block">
+        <p class="about-text">
+          I’m a <strong>Senior Data Analyst & AI Developer</strong> with 4.5+ years of experience
+          turning raw, complex datasets into actionable business insights. I specialize in
+          building <strong>end-to-end analytics solutions</strong>—from data extraction and
+          validation to visualization and strategic decision-making.
+        </p>
+  
+        <p class="about-text">
+          I’ve worked extensively across <strong>marketing analytics, operations analytics,
+          and AI-driven applications</strong>, partnering with product and business teams to
+          automate reporting workflows, improve engagement metrics, and enhance data accuracy
+          using <strong>Python, SQL, R, and Tableau</strong>.
+        </p>
+  
+        <p class="about-text">
+          Beyond analytics, I actively build <strong>AI-powered tools</strong> using Generative AI
+          APIs, experiment with <strong>interactive web experiences</strong>, and continuously
+          upskill to bridge data science, engineering, and product thinking.
+        </p>
+      </div>
+  
+      <!-- RIGHT: ANIMATION -->
+      <div class="about-animation">
+        <lottie-player
+          src="assets/animations/data-analytics.json"
+          background="transparent"
+          speed="1"
+          loop
+          autoplay>
+        </lottie-player>
+      </div>
+  
+    </div>
   </section>
+  
 
 <!-- HOW I THINK -->
 <section class="thinking" id="thinking">
@@ -252,44 +272,77 @@
       </div>
     </div>
   </section>
+
+
 <!-- CERTIFICATIONS -->
 <section class="certifications" id="certifications">
-  <h2 class="reveal">Certifications & Learning</h2>
-
+  <h2 class="reveal">Certifications & Continuous Learning</h2>
   <div class="cert-grid">
 
+    <!-- FEATURED CERTIFICATION -->
+    <div class="cert-card featured">
+      <span class="featured-badge">★ Featured</span>
+
+      <h3>Generative AI & Prompt Engineering</h3>
+      <p>Outskill Generative AI Program</p>
+
+      <span class="cert-focus">
+        Focus Areas: Large Language Models (LLMs), Prompt Design,
+        AI-powered Application Development
+      </span>
+
+      <a
+        href="https://drive.google.com/file/d/1D-mqEOAd-ASTHAd9NXrs7tigRFwaFXdS/view?usp=sharing/"
+        target="_blank"
+        rel="noopener"
+        class="cert-link"
+      >
+        View Certificate →
+      </a>
+    </div>
+
+    <!-- DATA ANALYTICS -->
     <div class="cert-card">
       <h3>Data Analytics Professional Certificate</h3>
-      <p>IIM Rohatk</p>
-      <span>Skills: Data Analysis, SQL, Dashboards</span>
+      <p>IIM Rohtak</p>
+
+      <span class="cert-focus">
+        Focus Areas: Data Analysis, SQL, Dashboarding,
+        Business & Decision Analytics
+      </span>
+
+      <a
+        href="https://drive.google.com/file/d/1aiBva-p3G0whtUi42LtZoApMwnMEKM6o/view?usp=sharing/"
+        target="_blank"
+        rel="noopener"
+        class="cert-link"
+      >
+       View Certificate →
+      </a>
     </div>
 
+    <!-- MACHINE LEARNING -->
     <div class="cert-card">
       <h3>Machine Learning with Python</h3>
-      <p>IIM Rohatk</p>
-      <span>Skills: ML, Feature Engineering, Model Evaluation</span>
-    </div>
+      <p>IIM Rohtak</p>
 
-    <div class="cert-card">
-      <h3>Generative AI & Prompt Engineering</h3>
-      <p>Google GenAI Program</p>
-      <span>Skills: LLMs, Prompt Design, AI Apps</span>
+      <span class="cert-focus">
+        Focus Areas: Supervised Learning, Feature Engineering,
+        Model Evaluation & Optimization
+      </span>
+
+      <a
+        href="https://drive.google.com/file/d/1aiBva-p3G0whtUi42LtZoApMwnMEKM6o/view?usp=sharing/"
+        target="_blank"
+        rel="noopener"
+        class="cert-link"
+      >
+       View Certificate →
+      </a>
     </div>
 
   </div>
 </section>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- PROJECTS -->
@@ -492,6 +545,8 @@
 
   <!-- MAIN JS -->
   <script src="js/main.js"></script>
+
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 
 </body>
 </html>

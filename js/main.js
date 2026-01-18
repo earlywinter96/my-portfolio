@@ -279,4 +279,44 @@ gsap.from(".ai-demo-box", {
       start: "top 75%"
     }
   });
-  
+  gsap.from(".about-animation", {
+    opacity: 0,
+    x: 60,
+    duration: 1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".about",
+      start: "top 70%"
+    }
+  });
+  gsap.from(".about-animation", {
+    opacity: 0,
+    x: 80,
+    duration: 1,
+    ease: "power3.out",
+    scrollTrigger: {
+      trigger: ".about",
+      start: "top 70%"
+    }
+  });
+  /* =====================================
+   ABOUT – SUBTLE GLOW & PULSE (FIXED)
+===================================== */
+gsap.fromTo(
+  ".about-animation",
+  {
+    scale: 1,
+    filter: "drop-shadow(0 0 0 rgba(0, 255, 213, 0))"
+  },
+  {
+    scale: 1.04,
+    filter: "drop-shadow(0 0 32px rgba(0, 255, 213, 0.45))",
+    ease: "power2.out",
+    scrollTrigger: {
+      trigger: ".about",
+      start: "top 70%",
+      end: "bottom 40%",
+      scrub: true
+    }
+  }
+);
