@@ -22,9 +22,9 @@ body {
    SECTIONS
 ===================================== */
 section {
-  min-height: 100vh;
   padding: 80px 10%;
 }
+
 
 /* =====================================
    PAGE LOADER
@@ -643,7 +643,9 @@ body.loaded .loader {
 .about-animation lottie-player {
   width: 100%;
   max-width: 360px;
+  height: 360px;              /* ✅ REQUIRED */
 }
+
 
 /* Mobile */
 @media (max-width: 768px) {
@@ -660,3 +662,50 @@ body.loaded .loader {
   opacity: 1;
 }
 
+.about-animation lottie-player {
+  display: block;
+  width: 100%;
+  height: 320px;
+}
+.about-animation {
+  min-height: 360px;
+}
+
+.about-animation lottie-player {
+  height: 360px;
+}
+.about-animation {
+  min-height: 400px !important;
+  background: rgba(3, 3, 3, 0.1);
+}
+
+.about-animation lottie-player {
+  width: 400px !important;
+  height: 400px !important;
+}
+/* 🔥 FORCE LOTTIE RENDER */
+lottie-player {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+.about-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.about-animation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 360px;
+}
+
+/* Lottie size */
+.about-animation lottie-player {
+  width: 360px;
+  height: 360px;
+}
+.about-animation lottie-player {
+  filter: drop-shadow(0 0 18px rgba(0, 255, 213, 0.25));
+}
