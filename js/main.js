@@ -340,3 +340,55 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+/* ===============================
+   TERMINAL HERO INTRO
+================================ */
+const terminalLines = [
+  ">>> import analytics, ai, automation",
+  "",
+  ">>> name = 'Hemant Solanki'",
+  ">>> role = 'Senior Data Analyst | AI Developer'",
+  "",
+  ">>> experience = 4.5  # years",
+  "",
+  ">>> skills = [",
+  "    'Data Accuracy & Quality',",
+  "    'Business Intelligence',",
+  "    'Python & SQL Automation',",
+  "    'AI-powered Applications'",
+  "  ]",
+  "",
+  ">>> impact = {",
+  "    'efficiency': '+60%',",
+  "    'data_accuracy': '+30%',",
+  "    'adoption': '+25%'",
+  "  }",
+  "",
+  ">>> print('Let’s build something impactful with data..')"
+];
+
+const terminal = document.getElementById("terminal-text");
+let lineIndex = 0;
+let charIndex = 0;
+
+function typeTerminal() {
+  if (!terminal) return;
+
+  if (lineIndex < terminalLines.length) {
+    if (charIndex < terminalLines[lineIndex].length) {
+      terminal.textContent += terminalLines[lineIndex][charIndex];
+      charIndex++;
+      setTimeout(typeTerminal, 25);
+    } else {
+      terminal.textContent += "\n";
+      charIndex = 0;
+      lineIndex++;
+      setTimeout(typeTerminal, 120);
+    }
+  }
+}
+
+window.addEventListener("load", () => {
+  setTimeout(typeTerminal, 600);
+});
