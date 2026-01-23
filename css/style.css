@@ -709,3 +709,166 @@ lottie-player {
 .about-animation lottie-player {
   filter: drop-shadow(0 0 18px rgba(0, 255, 213, 0.25));
 }
+/* ==========================
+   INTERACTIVE SKILLS
+========================== */
+
+.skills-intro {
+  margin-top: 14px;
+  max-width: 720px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+.skill-card {
+  background: #1a1a1a;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.skill-card:hover {
+  transform: translateY(-4px);
+}
+
+.skill-header {
+  width: 100%;
+  background: none;
+  border: none;
+  color: #fff;
+  padding: 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.skill-header h3 {
+  font-size: 1.05rem;
+  color: #00ffd5;
+}
+
+.toggle {
+  font-size: 1.4rem;
+  opacity: 0.7;
+  transition: transform 0.3s ease;
+}
+
+.skill-body {
+  display: none;
+  padding: 0 22px 22px;
+}
+
+.skill-card.active .skill-body {
+  display: block;
+}
+
+.skill-card.active .toggle {
+  transform: rotate(45deg);
+}
+
+.skill-summary {
+  font-size: 0.9rem;
+  opacity: 0.9;
+  margin-bottom: 10px;
+}
+
+.skill-body ul {
+  padding-left: 18px;
+  margin-bottom: 10px;
+}
+
+.skill-body li {
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 6px;
+}
+
+.skill-impact {
+  font-size: 0.82rem;
+  color: #00ffd5;
+  opacity: 0.9;
+}
+
+.featured-skill {
+  border: none;
+  box-shadow: 0 0 0 rgba(0, 255, 213, 0);
+}
+
+.featured-skill:hover {
+  box-shadow: 0 0 24px rgba(0, 255, 213, 0.35);
+}
+
+/* CONTACT CARDS – PREMIUM */
+.contact-card {
+  background: linear-gradient(160deg, #1a1a1a, #121212);
+  border-radius: 18px;
+  padding: 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: #fff;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Glow layer */
+.contact-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at top left,
+    rgba(0, 255, 213, 0.18),
+    transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-card:hover::before {
+  opacity: 1;
+}
+
+.contact-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
+}
+
+/* ICON */
+.contact-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  background: rgba(0, 255, 213, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+}
+
+/* TEXT */
+.contact-info strong {
+  font-size: 0.95rem;
+  letter-spacing: 0.3px;
+}
+
+.contact-info span {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  display: block;
+}
+
+.contact-info small {
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+.copy-email {
+  cursor: pointer;
+}
+
+.copy-email:active {
+  transform: scale(0.97);
+}

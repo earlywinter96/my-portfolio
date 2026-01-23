@@ -288,4 +288,55 @@ gsap.from(".ai-demo-box", {
       anim.style.transform = "translateX(0) scale(1)";
     }
   });
-  
+  /* ===============================
+   SKILLS – ACCORDION INTERACTION
+================================ */
+document.querySelectorAll(".skill-header").forEach(header => {
+  header.addEventListener("click", () => {
+    const card = header.parentElement;
+
+    document.querySelectorAll(".skill-card").forEach(c => {
+      if (c !== card) c.classList.remove("active");
+    });
+
+    card.classList.toggle("active");
+  });
+});
+
+/* ===============================
+   COPY EMAIL – BULLETPROOF FIX
+================================ */
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".copy-email").forEach(card => {
+    card.addEventListener("click", e => {
+      e.preventDefault();
+
+      const email = card.dataset.email;
+      const hint = card.querySelector(".copy-hint");
+
+      if (!email) return;
+
+      // Fallback-safe copy
+      const tempInput = document.createElement("textarea");
+      tempInput.value = email;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      tempInput.setSelectionRange(0, 99999);
+
+      try {
+        document.execCommand("copy");
+        hint.textContent = "Copied ✓";
+        hint.style.color = "#00ffd5";
+      } catch (err) {
+        hint.textContent = "Copy failed";
+      }
+
+      document.body.removeChild(tempInput);
+
+      setTimeout(() => {
+        hint.textContent = "Tap to copy";
+        hint.style.color = "";
+      }, 2000);
+    });
+  });
+});
