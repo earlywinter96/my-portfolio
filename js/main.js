@@ -193,6 +193,7 @@ document.querySelectorAll(".counter").forEach(counter => {
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 })();
+
 /* ===============================
    FLOATING CONTACT CTA
 ================================ */
@@ -207,22 +208,137 @@ if (fab) {
 }
 
 /* ===============================
-   COPY EMAIL TO CLIPBOARD
+   ENHANCED COPY EMAIL TO CLIPBOARD
 ================================ */
-document.querySelectorAll(".copy-email").forEach(card => {
-  card.addEventListener("click", () => {
-    const email = card.dataset.email;
+document.addEventListener("DOMContentLoaded", () => {
+  document.querySelectorAll(".copy-email").forEach(card => {
+    card.addEventListener("click", e => {
+      e.preventDefault();
 
-    navigator.clipboard.writeText(email).then(() => {
+      const email = card.dataset.email;
+      const copyStatus = card.querySelector(".copy-status");
       const hint = card.querySelector(".copy-hint");
-      hint.textContent = "Copied ✓";
 
-      setTimeout(() => {
-        hint.textContent = "Tap to copy";
-      }, 2000);
+      if (!email) return;
+
+      // Modern clipboard API with fallback
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(email).then(() => {
+          showCopySuccess(copyStatus, hint);
+        }).catch(() => {
+          fallbackCopy(email, copyStatus, hint);
+        });
+      } else {
+        fallbackCopy(email, copyStatus, hint);
+      }
     });
   });
 });
+
+function showCopySuccess(copyStatus, hint) {
+  // Show copy status badge
+  if (copyStatus) {
+    copyStatus.classList.add("show");
+    setTimeout(() => {
+      copyStatus.classList.remove("show");
+    }, 2000);
+  }
+
+  // Update hint text
+  if (hint) {
+    const originalText = hint.textContent;
+    hint.textContent = "Copied ✓";
+    hint.style.color = "#00ffd5";
+    
+    setTimeout(() => {
+      hint.textContent = originalText;
+      hint.style.color = "";
+    }, 2000);
+  }
+}
+
+function fallbackCopy(email, copyStatus, hint) {
+  const tempInput = document.createElement("textarea");
+  tempInput.value = email;
+  tempInput.style.position = "fixed";
+  tempInput.style.opacity = "0";
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  tempInput.setSelectionRange(0, 99999);
+
+  try {
+    document.execCommand("copy");
+    showCopySuccess(copyStatus, hint);
+  } catch (err) {
+    if (hint) {
+      hint.textContent = "Copy failed";
+    }
+  }
+
+  document.body.removeChild(tempInput);
+}
+
+/* ===============================
+   CONTACT METHOD FILTER
+================================ */
+document.querySelectorAll(".method-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const method = btn.dataset.method;
+    
+    // Update active button
+    document.querySelectorAll(".method-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    
+    // Filter contact cards
+    const cards = document.querySelectorAll(".contact-card");
+    
+    cards.forEach(card => {
+      if (method === "all") {
+        card.style.display = "flex";
+        gsap.fromTo(card, 
+          { opacity: 0, scale: 0.9, y: 20 },
+          { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" }
+        );
+      } else {
+        const category = card.dataset.category || "";
+        if (category.includes(method)) {
+          card.style.display = "flex";
+          gsap.fromTo(card, 
+            { opacity: 0, scale: 0.9, y: 20 },
+            { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: "back.out(1.7)" }
+          );
+        } else {
+          gsap.to(card, {
+            opacity: 0,
+            scale: 0.9,
+            y: 20,
+            duration: 0.3,
+            onComplete: () => {
+              card.style.display = "none";
+            }
+          });
+        }
+      }
+    });
+  });
+});
+
+/* ===============================
+   CONTACT CARDS ANIMATION
+================================ */
+gsap.from(".contact-card", {
+  opacity: 0,
+  y: 50,
+  scale: 0.9,
+  duration: 0.6,
+  stagger: 0.1,
+  ease: "back.out(1.7)",
+  scrollTrigger: {
+    trigger: ".contact-links",
+    start: "top 80%"
+  }
+});
+
 /* ===============================
    REAL GEMINI AI DEMO
 ================================ */
@@ -259,85 +375,63 @@ if (demoBtn) {
    GSAP ANIMATION – AI DEMO
 ================================ */
 gsap.from(".ai-demo-box", {
-    opacity: 0,
-    y: 80,
-    duration: 1,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: ".ai-demo",
-      start: "top 75%"
+  opacity: 0,
+  y: 80,
+  duration: 1,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".ai-demo",
+    start: "top 75%"
+  }
+});
+
+/* ===============================
+   GSAP ANIMATION – CERTIFICATIONS
+================================ */
+gsap.from(".cert-card", {
+  autoAlpha: 0,
+  y: 40,
+  duration: 0.6,
+  stagger: 0.15,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".certifications",
+    start: "top 75%"
+  }
+});
+
+/* ===============================
+   LOTTIE ANIMATION TRIGGER
+================================ */
+ScrollTrigger.create({
+  trigger: ".about",
+  start: "top 70%",
+  onEnter: () => {
+    const anim = document.querySelector(".about-animation");
+    if (anim) {
+      anim.classList.add("active");
     }
-  });
-  gsap.from(".cert-card", {
-    autoAlpha: 0,
-    y: 40,
-    duration: 0.6,
-    stagger: 0.15,
-    ease: "power3.out",
-    scrollTrigger: {
-      trigger: ".certifications",
-      start: "top 75%"
-    }
-  });
-  ScrollTrigger.create({
-    trigger: ".about",
-    start: "top 70%",
-    onEnter: () => {
-      const anim = document.querySelector(".about-animation");
-      anim.style.opacity = "1";
-      anim.style.transform = "translateX(0) scale(1)";
-    }
-  });
-  /* ===============================
+  }
+});
+
+/* ===============================
    SKILLS – ACCORDION INTERACTION
 ================================ */
 document.querySelectorAll(".skill-header").forEach(header => {
   header.addEventListener("click", () => {
     const card = header.parentElement;
 
+    // Close all other cards
     document.querySelectorAll(".skill-card").forEach(c => {
-      if (c !== card) c.classList.remove("active");
-    });
-
-    card.classList.toggle("active");
-  });
-});
-
-/* ===============================
-   COPY EMAIL – BULLETPROOF FIX
-================================ */
-document.addEventListener("DOMContentLoaded", () => {
-  document.querySelectorAll(".copy-email").forEach(card => {
-    card.addEventListener("click", e => {
-      e.preventDefault();
-
-      const email = card.dataset.email;
-      const hint = card.querySelector(".copy-hint");
-
-      if (!email) return;
-
-      // Fallback-safe copy
-      const tempInput = document.createElement("textarea");
-      tempInput.value = email;
-      document.body.appendChild(tempInput);
-      tempInput.select();
-      tempInput.setSelectionRange(0, 99999);
-
-      try {
-        document.execCommand("copy");
-        hint.textContent = "Copied ✓";
-        hint.style.color = "#00ffd5";
-      } catch (err) {
-        hint.textContent = "Copy failed";
+      if (c !== card) {
+        c.classList.remove("active");
+        c.classList.add("inactive");
       }
-
-      document.body.removeChild(tempInput);
-
-      setTimeout(() => {
-        hint.textContent = "Tap to copy";
-        hint.style.color = "";
-      }, 2000);
     });
+
+    // Toggle current card
+    card.classList.toggle("active");
+    card.classList.remove("inactive");
   });
 });
 
@@ -365,7 +459,7 @@ const terminalLines = [
   "    'adoption': '+25%'",
   "  }",
   "",
-  ">>> print('Let’s build something impactful with data..')"
+  ">>> print('Let's build something impactful with data..')"
 ];
 
 const terminal = document.getElementById("terminal-text");
@@ -391,4 +485,19 @@ function typeTerminal() {
 
 window.addEventListener("load", () => {
   setTimeout(typeTerminal, 600);
+});
+
+/* ===============================
+   THINKING UPGRADE ANIMATION
+================================ */
+gsap.from(".think-step", {
+  opacity: 0,
+  y: 40,
+  duration: 0.7,
+  stagger: 0.15,
+  ease: "power3.out",
+  scrollTrigger: {
+    trigger: ".thinking-upgrade",
+    start: "top 75%"
+  }
 });
